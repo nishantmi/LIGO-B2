@@ -1,7 +1,13 @@
 % This script loads all the parameters needed for simulation
 
-q_inital = [0; 0; 0];
-q_dot_inital = [0; 0; 0];
+% Initial state
+q_initial = [0; 0; 0];
+q_dot_initial = [0; 0; 0];
+
+% intial conditions needed for plotting
+x_initial = 0;
+y_initial = 0;
+
 
 % physical parameters
 Lb0 = 1;
