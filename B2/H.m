@@ -3,7 +3,7 @@ function H = H(q, params, M, J)
 %   q contains the current state
 % params are the parmeters params = [L, W, R, eta]
 % M is the mass vector M = [Mb, Mw,]
-% J is the intertia vector J = [Jbphi, Jbpsi, Jm]
+% J is the intertia vector J = [Jbphi, Jbpsi, Jm, Jw]
 
 tlw = q(1);
 trw = q(2);
@@ -20,6 +20,7 @@ Mw = M(2);
 Jbphi = J(1);
 Jbpsi = J(2);
 Jm = J(3);
+Jw = J(4);
 
 ha = 1/(4*W^2);
 hb = L*R*Mb*cos(psi)/(2);
@@ -30,6 +31,6 @@ h1 = (Mb*(W^2 - 2*L^2) - 4*Jbphi)*R^2;
 h2 = -4*W^2*eta^2*Jm;
 h3 = 4*W^2*(Mb*L^2 + Jbpsi + 2*eta^2*Jm);
 
-H = ha*[h0, h1, h2; h1, h0, h2; h2, h2, h3] + [-h, hc, hb; hc, -hc, hb; hb, hb 0];
+H = ha*[h0, h1, h2; h1, h0, h2; h2, h2, h3] + [-ha, hc, hb; hc, -hc, hb; hb, hb 0];
 end
 

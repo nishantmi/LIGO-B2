@@ -51,9 +51,10 @@ b_t = 0.05*(Mb0 + Mw)*g;
 % Normal electric scooter parameters - use
 % https://electricscooterparts.com/motorwheelgearratio.html
 % https://iopscience.iop.org/article/10.1088/1757-899X/421/4/042067/pdf
-
-eta = 8;
-K_mot = 1.6;
+% These really matter - we just constrain the output torque
+% -2 < u < 2
+eta = 10;
+K_mot = 2;
 % I can set these to 1 as they can be considered as scaling factors of the
 % input - as we don't have a limit set of the input
 K_amp_lw = 1;

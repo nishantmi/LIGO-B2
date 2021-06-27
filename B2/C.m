@@ -29,28 +29,30 @@ b_t = beta(4);
 
 ca = L^2*R^2*Mb*sin(2*psi)*psi_dot/W^2;
 cb = -W^2*sec(psi)/(4*L*R);
-if psi_dot ~= 0
+% if psi_dot ~= 0
     cc = (tlw_dot - trw_dot)/(2*psi_dot);
-else
-    cc = 0;
-end
+% else
+%     cc = 0;
+% end
 
-if tlw_dot == 0
-    b_gblw = b_gb_stiction;
-elseif tlw_dot > 0
-    b_gblw = b_gb_coloumb + b_gb_viscous*tlw_dot;
-else
-    b_gblw = -b_gb_coloumb + b_gb_viscous*tlw_dot;
-end
+% if tlw_dot == 0
+%     b_gblw = b_gb_stiction;
+% elseif tlw_dot > 0
+%     b_gblw = b_gb_coloumb + b_gb_viscous*tlw_dot;
+% else
+%     b_gblw = -b_gb_coloumb + b_gb_viscous*tlw_dot;
+% end
+% 
+% if trw_dot == 0
+%     b_gbrw = b_gb_stiction;
+% elseif trw_dot > 0
+%     b_gbrw = b_gb_coloumb + b_gb_viscous*tlw_dot;
+% else
+%     b_gbrw = -b_gb_coloumb + b_gb_viscous*tlw_dot;
+% end
+b_gblw = sign(tlw_dot)*b_gb_coloumb + b_gb_viscous*tlw_dot;
+b_gbrw = sign(trw_dot)*b_gb_coloumb + b_gb_viscous*tlw_dot;
 
-if trw_dot == 0
-    b_gbrw = b_gb_stiction;
-elseif trw_dot > 0
-    b_gbrw = b_gb_coloumb + b_gb_viscous*tlw_dot;
-else
-    b_gbrw = -b_gb_coloumb + b_gb_viscous*tlw_dot;
-end
-     
 
 C = ca*[1, -1, cb; -1, 1, cb; -cc, cc, 0] + [(b_gblw + b_t), 0, (-b_gblw); 0, (b_gbrw + b_t), (-b_gbrw); (-b_gblw), (-b_gbrw), (b_gblw + b_gbrw)];
 
