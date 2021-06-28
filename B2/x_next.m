@@ -13,7 +13,7 @@ function dxdt = define_dynamics(x,u, params, M, J, beta, g, Q)
     
     q = x(1:3);
     q_dot = x(4:6);
-    q_ddot = inv(H(q,params,M,J))*(Q*u - C(q,q_dot,params,M,beta)*q_dot - G(q,params,M,g));
+    q_ddot = invH(q,params,M,J)*(Q*u - C(q,q_dot,params,M,beta)*q_dot - G(q,params,M,g));
 
     dxdt = [q_dot; q_ddot];
     
